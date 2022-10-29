@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button, Modal, Container, Row } from "react-bootstrap";
 import TableImages from "./TableImages";
+import Compressor from 'compressorjs';
 
 import { consts } from "../config";
 
@@ -28,7 +29,22 @@ const ImagesUploader = (props) => {
   }, []);
 
   const fileSelectedHandler = (file) => {
-    setFile(file);
+    
+    // const image = e.target.files[0];
+    new Compressor(file, {
+      quality: 0.6, // 0.6 can also be used, but its not recommended to go below.
+      success: (compressedResult) => {
+        // compressedResult has the compressed file.
+        // Use the compressed file to upload the images to your server.        
+        console.log(compressedResult)
+        setFile(compressedResult)
+      },
+    });
+    
+    
+    
+    
+    //setFile(file);
   };
 
   const uploadFile = async () => {
