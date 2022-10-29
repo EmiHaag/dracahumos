@@ -1,0 +1,5 @@
+IR A SCREENS/ADMIN/API
+API.JS
+CAMBIAR A :
+/*const baseUri = "/backend/";*/
+const baseUri = "http://localhost:80/backend/"; // uri para test
