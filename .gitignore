@@ -1,0 +1,9 @@
+.DS_STORE
+
+LEER PARA LOCALHOST.TXT
+backups/
+build/
+node_modules/
+public/
+src/media/
+src/fonts/
