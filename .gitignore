@@ -1,6 +1,6 @@
 .DS_STORE
 
-LEER PARA LOCALHOST.TXT
+*.TXT
 backups/
 build/
 node_modules/
