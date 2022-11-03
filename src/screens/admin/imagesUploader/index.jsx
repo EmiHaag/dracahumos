@@ -73,7 +73,8 @@ const ImagesUploader = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  let tempImgSelected = { urlImage: "" };
+  /* let tempImgSelected = {}; */
+  let tempImgSelected = "";
 
   const saveSelectedImageUri = () => {
     let copy = props.selectedImages;
@@ -82,6 +83,9 @@ const ImagesUploader = (props) => {
     props.setSelectedImages(tempImgSelected, props.indexImage);
   };
 
+  const callback = (imageSelected)=>{
+    tempImgSelected = imageSelected;
+  }
   return (
     <>
       <Button variant="primary" onClick={handleShow} style={{ width: "100%", fontSize:"0.8em" , padding:"0"}}>
@@ -105,7 +109,8 @@ const ImagesUploader = (props) => {
             <Row>
               <TableImages
                 images={imagesInServer}
-                handleImageSelected={tempImgSelected}
+                /* handleImageSelected={tempImgSelected} */
+                onClick={callback}
               ></TableImages>
             </Row>
           </Container>

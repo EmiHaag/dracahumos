@@ -24,6 +24,7 @@ import PublicRoute from "../utils/publicRoute";
 import Novedades from "./novedades";
 import AgregarNovedad from "./admin/agregarNovedad";
 import EliminarNovedad from "./admin/eliminarNovedad";
+import editarItem from "./admin/editarItem";
 
 const Main = () => {
   return (
@@ -59,6 +60,7 @@ const Main = () => {
         <PublicRoute path="/login" component={Login} />
         <PrivateRoute path="/admin" component={mainAdmin} />
         <PrivateRoute path="/listar" component={ListarStock}></PrivateRoute>
+        <PrivateRoute path="/editarItem" component={editarItem}></PrivateRoute>
         <PrivateRoute path="/agregar" component={Agregar}></PrivateRoute>
         <PrivateRoute path="/eliminar" component={Eliminar}></PrivateRoute>
         <PrivateRoute

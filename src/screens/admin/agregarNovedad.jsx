@@ -8,6 +8,7 @@ import ImagesUploader from "./imagesUploader/index";
 import { consts } from "./config";
 import * as api from "./api";
 
+import MenuAdmin from "./components/menu_admin";
 const AgregarNovedad = (props) => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [formValues, setFormValues] = useState({
@@ -78,6 +79,7 @@ const AgregarNovedad = (props) => {
 
   return (
     <Container style={{ border: "1px", marginTop: "4em" }}>
+      <MenuAdmin />
       <LogOut {...props} />
       <h4>Agregar novedad:</h4>
 

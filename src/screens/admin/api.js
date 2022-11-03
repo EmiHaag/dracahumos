@@ -1,9 +1,10 @@
 const axios = require("axios");
 
 //const baseUri = "/backend/"; 
-const baseUri = "http://localhost/backend/"; // uri para test*/
+export const baseUri = "http://localhost/backend/"; // uri para test*/
 
 const uriNewItem = "database/updateDatabaseNewItemStock.php";
+const uriUpdateItem = "database/updateDatabaseItem.php";
 const uriAddNovedad = "database/addNovedad.php";
 
 const uriDeleteItem = "database/deleteItem.php";
@@ -13,6 +14,22 @@ const uriSignIn = "signIn.php";
 export const getItems = async () => {
   const response = await axios
     .get(baseUri + "get_all_items.php")
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      return error;
+    });
+  return await response;
+};
+
+//get specific item from ID
+export const getItem = async (id) => {
+  const response = await axios
+  .post(
+    baseUri + "get_item.php",
+    JSON.stringify({ idItem: parseInt(id) })
+  )
     .then(function (response) {
       return response.data;
     })
@@ -50,6 +67,18 @@ export const updateDatabaseItemStock = async (idItem, newStock) => {
   return await response;
 };
 
+export const updateDatabaseItem = async (datos) => {
+  const response = await axios
+    .post(baseUri + uriUpdateItem, datos)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      console.log(error);
+      return error;
+    });
+  return response;
+};
 export const updateDatabaseNewItemStock = async (datos) => {
   const response = await axios
     .post(baseUri + uriNewItem, datos)

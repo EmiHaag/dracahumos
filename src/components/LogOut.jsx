@@ -14,9 +14,9 @@ const LogOut = (props) => {
         <Button
           onClick={handleLogout}
           variant="danger"
-          style={{ width: "100%" }}
+          style={{ width: "100%", padding:"0.2em" }}
         >
-          Salir
+          Log out
         </Button>
       </Col>
     </Row>

@@ -6,19 +6,19 @@ import LogOut from "../../components/LogOut.jsx";
 const MainAdmin = (props) => {
   return (
     <div className="container" style={{ marginTop: "10em" }}>
-      <LogOut {...props} />
-
+     
       <Card>
         <Row>
           <Col>
             <ListGroup>
               <Button style={styles.btn} href="/listar">
-                Listar - modificar stock
+              Editar stock / Editar producto
               </Button>
 
               <Button style={styles.btn} variant="success" href="/agregar">
                 Agregar modelo
               </Button>
+            
               <Button style={styles.btn} variant="danger" href="/eliminar">
                 Eliminar modelo
               </Button>
@@ -44,6 +44,8 @@ const MainAdmin = (props) => {
           </Col>
         </Row>
       </Card>
+      <LogOut {...props} />
+
     </div>
   );
 };
