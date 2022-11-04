@@ -110,6 +110,16 @@ const ProductBox = ({
     setImagesArray(images);
 
   }, []);
+//Formatter para mostrar precio con formato $2,400.00
+  const formatter = new Intl.NumberFormat('es-AR', {
+    style: 'currency',
+    currency: 'ARS',
+    maximumSignificantDigits: 10 ,
+
+    // These options are needed to round to whole numbers if that's what you want.
+    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+  });
 
   return (
     <Card style={{ marginBottom: "5em", width: "30em", maxWidth: "100%" }}>
@@ -153,16 +163,18 @@ const ProductBox = ({
             <Row>
               <Col>
                 <span style={{ textDecoration: "line-through" }}>
-                  ${priceSinDescuento}
+                  
+                  {formatter.format(priceSinDescuento)}
                 </span>
                 <span style={{ marginLeft: "1em" }}>
-                  ${price} (llevando 10 o más)
+                {formatter.format(price)}
+                  
                 </span>
               </Col>
             </Row>
           ) : (
             <Row>
-              <Col>${price}</Col>
+              <Col>{formatter.format(price)}</Col>
             </Row>
           )}
         </Card.Title>

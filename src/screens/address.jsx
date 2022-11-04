@@ -19,8 +19,8 @@ import { Cookies, useCookies } from "react-cookie";
 const Address = () => {
   const [cookies, setCookie] = useCookies("cookieAddress");
   const [costoEnvio, setCostoEnvio] = useState(0);
-  const envioBsAs = 1200;
-  const envioInterior = 1400;
+  const envioBsAs = 1800;
+  const envioInterior = 2200;
 
   if (!cookies.cookieAddress) {
     console.log("no existe cookie address, creando.. ");

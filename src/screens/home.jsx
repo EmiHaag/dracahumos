@@ -8,6 +8,7 @@ const home = () => {
   const Video = lazy(() => import("../components/video"));
   const renderLoader = () => <p>Loading</p>;
 
+
   return (
     <Container fluid>
       <Suspense fallback={renderLoader()}>
