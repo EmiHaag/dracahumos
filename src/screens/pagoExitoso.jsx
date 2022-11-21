@@ -24,12 +24,50 @@ const PagoExitoso = () => {
   const idPago = queryParams.get("collection_id");
   const merchant_order_id = queryParams.get("merchant_order_id");
 
+  /* 
+  cookies.compra
+  [
+    {
+        "id": "116",
+        "category": "0",
+        "imageUri": "https://www.dracahumos.com.ar/backend/images/uploaded/UNIVERSO.15144.jpg",
+        "price": "3600",
+        "productName": "UNIVERSO",
+        "shortDescription": "CASCADA LUMINISCENTE"
+    },
+    {
+        "id": "126",
+        "category": "0",
+        "imageUri": "https://www.dracahumos.com.ar/backend/images/uploaded/CASTILLO 1.11875.jpg",
+        "price": "4000",
+        "productName": "CASTILLO",
+        "shortDescription": "CASCADA LUMINISCENTE"
+    }
+]
+  
+  cookieAddress
+  {
+    "firstName": "Emiliano",
+    "lastName": "Haag",
+    "direccion": "Liniers 31",
+    "ciudad": "Tandil",
+    "provincia": "Buenos Aires",
+    "postal": "7000",
+    "email": "emilianohaag10@gmail.com",
+    "costoEnvio": 1800,
+    "bsas": "1",
+    "dni": "37179417",
+    "telefono": "02494249236"
+}
+  
+  
+  */
   console.log(payment_id, status, merchant_order_id);
   //setCookie("compra", []);
   useEffect(() => {
     let datos = [cookies.compra, cookies.cookieAddress, idPago];
     console.log(datos);
-    fetch("./email/test.php", {
+    fetch("./email/sendEmail.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(datos),
@@ -62,8 +100,7 @@ const PagoExitoso = () => {
                 <h3>
                   GRACIAS POR TU COMPRA
                   <span
-                    style={{ textTransform: "uppercase", marginLeft: "0.5em" }}
-                  >
+                    style={{ textTransform: "uppercase", marginLeft: "0.5em" }}>
                     {cookies.cookieAddress.firstName}
                   </span>
                   !

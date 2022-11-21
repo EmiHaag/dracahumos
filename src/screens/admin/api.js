@@ -10,6 +10,7 @@ const uriAddNovedad = "database/addNovedad.php";
 const uriDeleteItem = "database/deleteItem.php";
 const uriDeleteNovedad = "database/deleteNovedad.php";
 const uriSignIn = "signIn.php";
+//get specific item from ID
 
 export const getItems = async () => {
   const response = await axios
@@ -26,10 +27,12 @@ export const getItems = async () => {
 //get specific item from ID
 export const getItem = async (id) => {
   const response = await axios
-  .post(
-    baseUri + "get_item.php",
-    JSON.stringify({ idItem: parseInt(id) })
-  )
+    .post(
+      baseUri + "get_item.php",
+      JSON.stringify({
+        idItem: parseInt(id)
+      })
+    )
     .then(function (response) {
       return response.data;
     })
@@ -54,7 +57,10 @@ export const updateDatabaseItemStock = async (idItem, newStock) => {
   const response = await axios
     .post(
       baseUri + "updateDatabaseItemStock.php",
-      JSON.stringify({ idItem: parseInt(idItem), newStock: newStock })
+      JSON.stringify({
+        idItem: parseInt(idItem),
+        newStock: newStock
+      })
     )
     .then(function (response) {
       return response;
@@ -105,7 +111,9 @@ export const addNovedad = async (datos) => {
 };
 export const deleteItem = async (id) => {
   const response = await axios
-    .delete(baseUri + uriDeleteItem, { data: id })
+    .delete(baseUri + uriDeleteItem, {
+      data: id
+    })
     .then(function (response) {
       return response;
     })
@@ -117,7 +125,9 @@ export const deleteItem = async (id) => {
 };
 export const deleteNovedad = async (id) => {
   const response = await axios
-    .delete(baseUri + uriDeleteNovedad, { data: id })
+    .delete(baseUri + uriDeleteNovedad, {
+      data: id
+    })
     .then(function (response) {
       return response;
     })

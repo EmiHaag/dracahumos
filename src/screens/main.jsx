@@ -25,6 +25,8 @@ import Novedades from "./novedades";
 import AgregarNovedad from "./admin/agregarNovedad";
 import EliminarNovedad from "./admin/eliminarNovedad";
 import editarItem from "./admin/editarItem";
+import EditarCostosEnvios from "./admin/editarCostosEnvios";
+import WhatsAppButton from "../components/whatsAppButton";
 
 const Main = () => {
   return (
@@ -44,8 +46,7 @@ const Main = () => {
         <Route path="/catalogo"></Route>
         <Route
           path="/que-son-y-como-funcionan-cascadas-de-humo-inverso"
-          component={HumoInverso}
-        ></Route>
+          component={HumoInverso}></Route>
         <Route path="/quienes-somos" component={QuienesSomos}></Route>
         <Route path="/payment-success" component={PagoExitoso}></Route>
         <Route
@@ -64,15 +65,16 @@ const Main = () => {
         <PrivateRoute path="/agregar" component={Agregar}></PrivateRoute>
         <PrivateRoute path="/eliminar" component={Eliminar}></PrivateRoute>
         <PrivateRoute
+          path="/editar-costos-envios"
+          component={EditarCostosEnvios}></PrivateRoute>
+        <PrivateRoute
           path="/agregar-novedad"
-          component={AgregarNovedad}
-        ></PrivateRoute>
+          component={AgregarNovedad}></PrivateRoute>
         <PrivateRoute
           path="/eliminar-novedad"
-          component={EliminarNovedad}
-        ></PrivateRoute>
+          component={EliminarNovedad}></PrivateRoute>
       </Switch>
-
+      <WhatsAppButton />
       <ShopCar />
     </BrowserRouter>
   );

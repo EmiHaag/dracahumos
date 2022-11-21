@@ -90,7 +90,7 @@ const Agregar = (props) => {
           setMsgAlert({
             headingAlert: "Servidor dice: ",
             msgAlert: res.data,
-            bgColor: "success", 
+            bgColor: "success",
           });
           setShowAlert(true);
           resetFormValues();

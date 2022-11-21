@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Card, Container, Row, Button, Table } from "react-bootstrap";
+import { Card, Container, Row, Button, Table } from "react-bootstrap";
 import AlertDismissible from "../../components/alert";
 import * as api from "./api";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -23,7 +23,7 @@ const ListarStock = (props) => {
       .getItems()
       .then((data) => {
         setData(data);
-        console.log(data)
+        console.log(data);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -70,7 +70,7 @@ const ListarStock = (props) => {
   return (
     <Container style={{ marginTop: "4em" }}>
       <MenuAdmin />
-      
+
       <h4>Modelos : {datos.length} (Editar stock / Editar producto )</h4>
       <Row>
         {/* boton 3 estados
@@ -105,7 +105,18 @@ const ListarStock = (props) => {
         <tbody>
           {datos.map((item, index) => (
             <tr key={item.id}>
-              <td><Card.Img style={{width:'10rem'}} variant="top" src={(api.baseUri + "/images/uploaded/" + (item.main_image).split(',')[0])} alt={item.main_image} /></td>
+              <td>
+                <Card.Img
+                  style={{ width: "10rem" }}
+                  variant="top"
+                  src={
+                    api.baseUri +
+                    "/images/uploaded/" +
+                    item.main_image.split(",")[0]
+                  }
+                  alt={item.main_image}
+                />
+              </td>
               <td>{item.nombre}</td>
               <td>{item.price}</td>
               <td>{item.price_may}</td>
@@ -124,9 +135,13 @@ const ListarStock = (props) => {
                 />
               </td>
               <td>
-              <Button style={{width:"2.5rem"}} variant="warning" href="/eliminar" title="Editar" href={"editarItem/"+item.id}>
-                <AiOutlineEdit />
-              </Button>
+                <Button
+                  style={{ width: "2.5rem" }}
+                  variant="warning"
+                  /* href="/eliminar" */ title="Editar"
+                  href={"editarItem/" + item.id}>
+                  <AiOutlineEdit />
+                </Button>
               </td>
             </tr>
           ))}

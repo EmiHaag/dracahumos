@@ -43,7 +43,7 @@ const Eliminar = (props) => {
   return (
     <Container style={{ marginTop: "5em" }}>
       <MenuAdmin />
-     
+
       <Row>
         <h3>Eliminar modelo:</h3>
       </Row>
@@ -100,7 +100,7 @@ const Eliminar = (props) => {
         show={showAlert}
         colorBg="danger"
       />
-       <LogOut {...props} />
+      <LogOut {...props} />
     </Container>
   );
 };

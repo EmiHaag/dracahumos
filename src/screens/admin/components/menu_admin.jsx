@@ -48,6 +48,13 @@ const MenuAdmin = ()=>{
               Agregar novedad
             </Link>
             <Link
+                 className="nav-link"
+                 to="/editar-costos-envios"
+              
+              >
+                EditarCostosEnvios
+              </Link>
+            <Link
               className="nav-link"
               to="/eliminar-novedad"
          

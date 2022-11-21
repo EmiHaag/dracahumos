@@ -7,9 +7,11 @@ import { useCookies } from "react-cookie";
 import HeaderShop from "../components/headerShop";
 
 const Payment = () => {
+  const axios = require("axios");
   const [cookies, setCookie] = useCookies("cookieAddress");
 
   const mountScript = (prefId) => {
+    console.log(prefId);
     const script = document.createElement("script");
 
     script.src =
@@ -19,16 +21,32 @@ const Payment = () => {
 
     document.getElementById("btnPagar").appendChild(script);
   };
+
   useEffect(() => {
-    let datos = [cookies.compra, cookies.cookieAddress];
-    console.log(datos);
-    fetch("/mercadopago/test.php", {
+    let datos = JSON.stringify([cookies.compra, cookies.cookieAddress]);
+    // console.log(datos);
+    /*     //fetch("/mercadopago/test.php", {
+    fetch("http://localhost/mercadopago/test.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(datos),
+      body: datos,
     })
-      .then((response) => response.json())
-      .then((data) => mountScript(data));
+      .then((response) => {
+        console.log(response);
+        response.json()})
+      .then((data) =>{console.log(data); mountScript(data)})
+      ; */
+
+    axios
+      .post("/mercadopago/test.php", datos)
+
+      .then((data) => {
+        //console.log(data.data);
+        mountScript(data.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   });
 
   return (

@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 import Footer from "../components/footer";
 import HeaderShop from "../components/headerShop";
 import ProductBox from "../components/productBox";
+
 import { Link } from "react-router-dom";
 import withRouter from "next/dist/client/with-router";
 import * as api from "./admin/api";
@@ -66,6 +67,7 @@ function Minoristas() {
                 ))}
           </CardGroup>
         </Row>
+       
       </Container>
       <Footer></Footer>
     </>
