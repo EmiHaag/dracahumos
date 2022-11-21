@@ -14,7 +14,8 @@ function App() {
   if (!cookie.compra) setCookie("compra", []);
   return (
     <>
-      <CookiesProvider>
+   {/*  <div style={{width:"100%", height:"15rem", position:"absolute", backgroundColor:"rgb(214, 173, 96)", color:"red"}}><h2>Sitio en mantenimiento hasta el 22/11/2022, no realize transacciones</h2></div>
+    */}   <CookiesProvider>
         <ShopProvider>
           <AddressProvider>
             <Main />

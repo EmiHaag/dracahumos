@@ -4,6 +4,7 @@ import * as api from "./api";
 import { consts } from "./config";
 import AlertDismissible from "../../components/alert";
 
+import MenuAdmin from "./components/menu_admin";
 import LogOut from "../../components/LogOut.jsx";
 const Eliminar = (props) => {
   const [datos, setData] = useState([]);
@@ -41,7 +42,8 @@ const Eliminar = (props) => {
 
   return (
     <Container style={{ marginTop: "5em" }}>
-      <LogOut {...props} />
+      <MenuAdmin />
+
       <Row>
         <h3>Eliminar modelo:</h3>
       </Row>
@@ -98,6 +100,7 @@ const Eliminar = (props) => {
         show={showAlert}
         colorBg="danger"
       />
+      <LogOut {...props} />
     </Container>
   );
 };

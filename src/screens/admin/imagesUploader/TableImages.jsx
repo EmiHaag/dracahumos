@@ -13,8 +13,9 @@ const TableImages = (props) => {
   /*  const [itemSelected, setItemSelected] = useState(); */
   const handleImageSelectedChanged = (e) => {
     /*     handleImageSelected[indexImage] = e.target.value; */
-    handleImageSelected.urlImage = e.target.value;
-    console.log("onImageSelectedChanged:", handleImageSelected.urlImage);
+
+    props.onClick(e.target.value);
+   //console.log("onImageSelectedChanged:", handleImageSelected);
   };
 
   return (
@@ -29,7 +30,7 @@ const TableImages = (props) => {
                   name="selectedImage"
                   aria-label="Checkbox for following text input"
                   value={item}
-                  onChange={(e) => handleImageSelectedChanged(e)}
+                  onChange={handleImageSelectedChanged}
                 />
                 {item.split('.').pop() === "mp4" ?
                   <video style={{width:"100%"}} preload="none" controls>

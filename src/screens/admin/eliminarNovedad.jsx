@@ -6,6 +6,7 @@ import AlertDismissible from "../../components/alert";
 
 import LogOut from "../../components/LogOut.jsx";
 
+import MenuAdmin from "./components/menu_admin";
 const EliminarNovedad = (props) => {
   const [datos, setData] = useState([]);
   const [msgAlert, setMsgAlert] = useState({
@@ -42,6 +43,7 @@ const EliminarNovedad = (props) => {
 
   return (
     <Container style={{ marginTop: "5em" }}>
+      <MenuAdmin />
       <LogOut {...props} />
       <Row>
         <h3>Eliminar modelo:</h3>

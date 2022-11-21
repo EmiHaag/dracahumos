@@ -67,7 +67,7 @@ const CheckOut = () => {
               <span style={{ fontSize: "2rem" }}>
                 $
                 {totals.cumpleMayorista &&
-                cookieCompra.buyingMayorista === "true"
+                  cookieCompra.buyingMayorista === "true"
                   ? totals.totalPrice + totals.subTotalNoMayorista
                   : totals.subTotalNoMayorista}
               </span>
