@@ -74,6 +74,7 @@ const Main = () => {
           path="/eliminar-novedad"
           component={EliminarNovedad}></PrivateRoute>
       </Switch>
+
       <WhatsAppButton />
       <ShopCar />
     </BrowserRouter>
