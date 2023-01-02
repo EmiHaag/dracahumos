@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Alert,
   Card,
@@ -10,6 +10,7 @@ import {
   /*  Jumbotron, */
   ListGroup,
 } from "react-bootstrap";
+import * as api from "./admin/api";
 import colors from "../config/colors";
 import HeaderShop from "../components/headerShop";
 import Footer from "../components/footer";
@@ -19,10 +20,19 @@ import { Cookies, useCookies } from "react-cookie";
 const Address = () => {
   const [cookies, setCookie] = useCookies("cookieAddress");
   const [costoEnvio, setCostoEnvio] = useState(0);
-  /* const envioBsAs = 0;
-  const envioInterior = 0;*/
-  const envioBsAs = 1800;
-  const envioInterior = 2200;
+  const [listaCostoEnvio, setListaCostoEnvio] = useState([]);
+  /* const envioBsAs = 1800;
+  const envioInterior = 2200; */
+
+  useEffect(() => {
+    //returns costos envios [{"id":"1","tipo_envio":"buenos-aires","costo":"1800"},{"id":"2","tipo_envio":"resto-pais","costo":"2200"}]
+    api
+      .getCostosEnvios()
+      .then((data) => {
+        setListaCostoEnvio(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   if (!cookies.cookieAddress) {
     console.log("no existe cookie address, creando.. ");
@@ -48,7 +58,9 @@ const Address = () => {
         form.elements["aSucursal"].value === "0"
       ) {
         //caso 2 : bsas == 1 sucursal == 0
-        auxcostoEnvio = envioBsAs;
+        //auxcostoEnvio = envioBsAs;
+        auxcostoEnvio =
+          listaCostoEnvio.length > 0 ? listaCostoEnvio[0].costo : null;
       } else if (
         form.elements["bsas"].value === "0" &&
         form.elements["aSucursal"].value === "1"
@@ -60,7 +72,9 @@ const Address = () => {
         form.elements["aSucursal"].value === "0"
       ) {
         // caso 4 : bsas == 0 sucursal == 0
-        auxcostoEnvio = envioInterior;
+        //auxcostoEnvio = envioInterior;
+        auxcostoEnvio =
+          listaCostoEnvio.length > 0 ? listaCostoEnvio[1].costo : null;
       }
       setCostoEnvio(auxcostoEnvio);
       obj["costoEnvio"] = auxcostoEnvio;

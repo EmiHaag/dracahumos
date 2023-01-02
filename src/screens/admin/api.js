@@ -1,15 +1,43 @@
 const axios = require("axios");
 
-export const baseUri = "/backend/"; 
+export const baseUri = "/backend/";
 //export const baseUri = "http://localhost/backend/"; // uri para test*/
 
 const uriNewItem = "database/updateDatabaseNewItemStock.php";
 const uriUpdateItem = "database/updateDatabaseItem.php";
 const uriAddNovedad = "database/addNovedad.php";
+const uriGetCostosEnvios = "database/getCostosEnvios.php";
+const uriSetCostosEnvios = "database/setCostosEnvios.php";
 
 const uriDeleteItem = "database/deleteItem.php";
 const uriDeleteNovedad = "database/deleteNovedad.php";
 const uriSignIn = "signIn.php";
+
+
+export const getCostosEnvios = async () => {
+  const response = await axios
+    .get(baseUri + uriGetCostosEnvios)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      return error;
+    });
+  return await response;
+};
+export const setCostosEnvios = async (item) => {
+  const response = await axios
+    .post(baseUri + uriSetCostosEnvios, item)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      return error;
+    });
+  return await response;
+};
+
+
 //get specific item from ID
 
 export const getItems = async () => {
