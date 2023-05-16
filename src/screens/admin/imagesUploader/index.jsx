@@ -21,7 +21,7 @@ const ImagesUploader = (props) => {
       .get(consts.LOCALHOST + "backend/images/getImagesFromServer.php")
       .then((res) => {
         setImagesInServer(res.data);
-        // console.log(res.data);
+        console.log(res.data);
       })
       .catch(function (error) {
         //  console.log(error);
@@ -155,10 +155,10 @@ const ImagesUploader = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cerrar
           </Button>
           <Button variant="primary" onClick={saveSelectedImageUri}>
-            Save Changes
+            Guardar
           </Button>
         </Modal.Footer>
       </Modal>

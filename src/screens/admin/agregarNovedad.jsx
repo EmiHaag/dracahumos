@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Card, Container, Col, Form, Row } from "react-bootstrap";
 
 import LogOut from "../../components/LogOut";
@@ -10,7 +10,9 @@ import * as api from "./api";
 
 import MenuAdmin from "./components/menu_admin";
 const AgregarNovedad = (props) => {
+  // array de imagenes seleccionadas ["imagen1.jpg", "video2.mp4".. ]
   const [selectedImages, setSelectedImages] = useState([]);
+
   const [formValues, setFormValues] = useState({
     title: "",
     texto: "",
@@ -34,12 +36,14 @@ const AgregarNovedad = (props) => {
     setSelectedImages([...selectedImages]);
     setFormValues({
       ...formValues,
-      imageUrl: selectedImages.map((e) => e.urlImage).join(","),
+      imageUrl: selectedImages.map((e) => e).join(","),
     });
+    console.log(selectedImages);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formValues);
 
     if (selectedImages.length === 0) {
       setMsgAlert({
@@ -72,7 +76,7 @@ const AgregarNovedad = (props) => {
     setSelectedImages([...copyArray]);
     console.log(copyArray);
   }
-
+  useEffect(() => {}, [formValues]);
   const handleValueChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
@@ -107,8 +111,7 @@ const AgregarNovedad = (props) => {
                 value={formValues.texto}
                 onChange={handleValueChange}
                 name="texto"
-                required
-              ></textarea>
+                required></textarea>
             </Form.Group>
           </Col>
         </Row>
@@ -122,7 +125,7 @@ const AgregarNovedad = (props) => {
                 <Col key={i} xs={12} md={3} lg={3}>
                   <Card>
                     <Card.Body>
-                      {selectedImages[i].urlImage === "" ? (
+                      {selectedImages[i] === "" ? (
                         <>
                           <ImagesUploader
                             setSelectedImages={handleChange}
@@ -132,23 +135,39 @@ const AgregarNovedad = (props) => {
                           />
                           <Button
                             onClick={() => resetearImagenDeArray(i)}
-                            style={{ width: "3em", height: "3em" }}
-                          >
+                            style={{ width: "3em", height: "3em" }}>
                             x
                           </Button>
                         </>
                       ) : (
                         <>
-                          <Card.Img
-                            variant="top"
-                            src={
-                              consts.LOCALHOST +
-                              consts.IMAGES_FOLDER +
-                              selectedImages[i].urlImage
-                            }
-                          />
-                          <Card.Title>
-                            imagen {i + 1} : {selectedImages[i].urlImage}
+                          {selectedImages[i].split(".").pop() === "mp4" ? (
+                            <video
+                              style={{ width: "100%" }}
+                              preload="none"
+                              controls>
+                              <source
+                                src={
+                                  consts.LOCALHOST +
+                                  consts.IMAGES_FOLDER +
+                                  selectedImages[i]
+                                }
+                                type="video/mp4"
+                              />
+                              Your browser does not support HTML video.
+                            </video>
+                          ) : (
+                            <Card.Img
+                              variant="top"
+                              src={
+                                consts.LOCALHOST +
+                                consts.IMAGES_FOLDER +
+                                selectedImages[i]
+                              }
+                            />
+                          )}
+                          <Card.Title style={{ fontSize: "1em" }}>
+                            imagen {i + 1} : {selectedImages[i]}
                           </Card.Title>
 
                           <Button
@@ -160,8 +179,7 @@ const AgregarNovedad = (props) => {
                               position: "absolute",
                               top: "1em",
                               right: "2em",
-                            }}
-                          >
+                            }}>
                             x
                           </Button>
                         </>
@@ -174,16 +192,11 @@ const AgregarNovedad = (props) => {
           </Row>
           <Row>
             <Col>
-              {selectedImages.length < 1 && (
-                <Button
-                  onClick={(e) =>
-                    setSelectedImages([...selectedImages, { urlImage: "" }])
-                  }
-                  variant="success"
-                >
-                  +
-                </Button>
-              )}
+              <Button
+                onClick={(e) => setSelectedImages([...selectedImages, ""])}
+                variant="success">
+                +
+              </Button>
             </Col>
           </Row>
         </Row>

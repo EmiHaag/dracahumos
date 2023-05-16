@@ -17,7 +17,7 @@ header('Access-Control-Allow-Origin: http://localhost:3000');
 on remote
 header('Access-Control-Allow-Origin: http://localhost');
 
-
+ "homepage": "https://dracahumos.com.ar/",
 
 TODO List:
 compresion de imagenes al subir : Done

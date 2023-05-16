@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 export const baseUri = "/backend/";
-//export const baseUri = "http://localhost/backend/"; // uri para test*/
+//export const baseUri = "http://localhost:80/backend/"; // uri para test*/
 
 const uriNewItem = "database/updateDatabaseNewItemStock.php";
 const uriUpdateItem = "database/updateDatabaseItem.php";
